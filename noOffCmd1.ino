@@ -1,3 +1,4 @@
+//all hardware
 #include <Arduino.h>
 #include <FastLED.h>
 #include <Servo.h>
