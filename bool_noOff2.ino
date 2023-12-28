@@ -37,15 +37,47 @@ void runPumps(int param1, int param2) {
   Serial.println("Running pumps");
 }
 
-void runServo(int param1, int param2) {
-  // Implement the servo logic here
-  Serial.println("Running servo");
+void runServo(int angle, int runSpeed) {
+  int mappedSpeed = map(runSpeed, 0, 2000, 0, 180);
+  
+  if (angle >= 0) {
+    for (int i = 0; i <= angle; ++i) {
+      myServo.write(i);
+      delay(mappedSpeed);
+    }
+  } else {
+    for (int i = 0; i >= angle; --i) {
+      myServo.write(i);
+      delay(mappedSpeed);
+    }
+  }
 }
 
-void runStepper(int param1, int param2) {
-  // Implement the stepper motor logic here
-  Serial.println("Running stepper");
+void runStepper(int angle, int runTime) {
+  Serial.print("Running stepper motor, Angle: " + String(angle) + " Run Time: " + String(runTime) + "\r\n");
+  //Serial.print(angle);
+  //Serial.print(", Run time: ");
+  //Serial.println(runTime);
+
+  int direction = (angle >= 0) ? HIGH : LOW;
+  angle = abs(angle);
+  digitalWrite(dirPin, direction);
+
+  // Calculate the number of steps based on the angle
+  int steps = angle * numStepsPerRevolution / 360;
+
+  // Run the stepper motor
+  for (int i = 0; i < steps; i++) {
+    digitalWrite(pulPin, HIGH);
+    delayMicroseconds(runTime);
+    digitalWrite(pulPin, LOW);
+    delayMicroseconds(runTime);
+  }
+
+  // Run for the requested time
+  //delay(runTime);
 }
+
 
 void setup() {
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
