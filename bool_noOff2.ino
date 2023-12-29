@@ -89,12 +89,10 @@ void setup() {
   FastLED.clear();
   FastLED.show();
 }
-
 void adiosMf() {
   // Initialize color values
   CRGB brownishYellow = CRGB(218, 165, 32); // Brownish Yellow color
   CRGB red = CRGB(255, 0, 0);
-
   // Set the LED animation state to running
   isLedAnimationRunning = true;
 
@@ -120,7 +118,6 @@ void adiosMf() {
         leds[i + j] = red; // Set LEDs to red background
       }
     }
-
     // Move the group of brownish yellow LEDs from right to left on a red background
     for (int i = NUM_LEDS - GROUP_SIZE; i >= 0; i--) {
       for (int j = 0; j < GROUP_SIZE; j++) {
@@ -144,7 +141,6 @@ void adiosMf() {
     }
   }
 }
-
 void processCommand(String command) {
   char separator = ',';
 
@@ -248,7 +244,6 @@ void processCommand(String command) {
     Serial.println("Invalid command format");
   }
 }
-
 void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
