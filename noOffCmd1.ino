@@ -1,18 +1,17 @@
-//all hardware
 #include <Arduino.h>
 #include <FastLED.h>
 #include <Servo.h>
 
-//const int motorPins[] = {54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83};
-const int motorPins[] = {54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 84, 85};
+const int motorPins[] = {54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83};
+//const int motorPins[] = {54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 84, 85};
 
 const int dirPin = 12;
-const int pulPin = 46;
+const int pulPin = 11;
 
 const int driverOut1 = 84;
 const int driverOut2 = 85;
-const int servoPin = 12;
-const int servoPWM = 13;
+const int servoPin = 5;
+//const int servoPWM = 13;
 
 Servo myServo;
 
@@ -52,7 +51,7 @@ void runStepper(int param1, int param2) {
 void setup() {
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
-  FastLED.setBrightness(50);
+  FastLED.setBrightness(150);
   Serial.begin(115200);
   FastLED.clear();
   FastLED.show();
